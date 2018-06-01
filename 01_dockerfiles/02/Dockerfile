@@ -16,7 +16,7 @@ COPY Gemfile.lock /app/Gemfile.lock
 
 RUN gem install bundler && bundle install
 
-COPY . /opt/app/
+COPY app/ /opt/app/
 
 ONBUILD RUN rake db:migrate
 ONBUILD RUN rake db:seed
