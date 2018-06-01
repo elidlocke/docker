@@ -9,14 +9,14 @@ RUN gem install rails
 RUN gem install rake
 
 RUN mkdir /opt/app/
-
 WORKDIR /opt/app/
 
-RUN printf "source 'https://rubygems.org'\ngem 'rails', '5.0.0.1'" >> Gemfile
-RUN touch Gemfile.lock
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 
 RUN gem install bundler && bundle install
 
-ONBUILD RUN if [ -f rakefile ]; \
-    then rake db:migrate && rake db:seed; \
-    fi
+COPY . /opt/app/
+
+ONBUILD RUN rake db:migrate
+ONBUILD RUN rake db:seed
