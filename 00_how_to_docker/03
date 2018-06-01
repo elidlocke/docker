@@ -4,6 +4,6 @@
 # errors. You have to fix all four environment variables with one command, and
 # you are not allowed to use your shell’s builtin to set these variables by hand.
 
-eval "$(docker-machine env Char)"
+eval $(docker-machine env Char)
 echo "May need to copy paste this script to override zsh settings."
 echo "Double check this worked by typing: env | grep 'DOCKER'"
